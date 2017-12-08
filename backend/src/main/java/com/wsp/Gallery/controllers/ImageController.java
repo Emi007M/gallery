@@ -1,12 +1,10 @@
 package com.wsp.Gallery.controllers;
 
+import com.wsp.Gallery.models.Image;
+import com.wsp.Gallery.models.ImageDao;
+import com.wsp.Gallery.services.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import com.wsp.Gallery.services.ImageService;
-
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 /**
  * Created by Emilia on 2017-12-06.
@@ -22,27 +20,30 @@ public class ImageController {
         this.imageService = imageService;
     }
 
-    @GetMapping("/test")
-    String getTest() {
-        return "hello";
-    }
-
 
     @GetMapping()
-    Iterable<byte[]> getImages() {
-        return StreamSupport.stream(this.imageService.findAll().spliterator(), false).map(i -> i.getBytes()).collect(Collectors.toList());
+    Iterable<Image> getImages() {
+        return this.imageService.findAll();
     }
 
     @GetMapping(value = "/{imageId}")
-    byte[] getImage(@PathVariable("imageId") Long id) {
+    Image getImage(@PathVariable("imageId") Long id) {
+        return this.imageService.findById(id).get();
+    }
 
-        //return this.imageService.findById(id).getBytes();
-        return this.imageService.findById(id).get().getBytes();
+    @GetMapping(value = "/{imageId}/{kind}")
+    Image getImage(@PathVariable("imageId") Long id, @PathVariable String kind) {
+        return this.imageService.findByIdAltered(id, kind).get();
+    }
+
+    @GetMapping(value = "/{imageId}/{kind}/{value}")
+    Image getImage(@PathVariable("imageId") Long id, @PathVariable String kind, @PathVariable Integer value) {
+        return this.imageService.findByIdAltered(id, kind, value).get();
     }
 
     @PostMapping()
-    public long addImage(@RequestBody byte[] image) {
-        return this.imageService.addImage(image).getId();
+    public long addImage(@RequestBody ImageDao image) {
+        return this.imageService.addImage(image.getBytes(), image.getType()).getId();
     }
 
     @DeleteMapping(value = "/{imageId}")

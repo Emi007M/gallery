@@ -1,48 +1,53 @@
+
+/*general*/
+
 body {
   background: #333;
   color: white;
 }
 
 #header {
-font-family: 'Exo', sans-serif;
-font-weight: bold;
-text-transform: uppercase;
-    z-index: 10;
-    position: absolute;
-     background: url('assets/header.jpg');
-         background-position-x: center;
-         left: 0;
-         right: 0;
-         top: 0;
-        height: 80px;
-         -webkit-box-shadow: 0px 22px 22px 0px rgba(0,0,0,0.75);
-         -moz-box-shadow: 0px 22px 22px 0px rgba(0,0,0,0.75);
-    box-shadow: 0px 22px 22px 0px rgba(0,0,0,0.75);
-    text-align: center;
-    text-shadow: -1px -2px 0px rgba(0, 0, 0, 0.7);
-    color: lightgrey;
+  font-family: 'Exo', sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  z-index: 10;
+  position: absolute;
+  background: url('assets/header.jpg');
+  background-position-x: center;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 80px;
+  -webkit-box-shadow: 0px 22px 22px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 22px 22px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 22px 22px 0px rgba(0,0,0,0.75);
+  text-align: center;
+  text-shadow: -1px -2px 0px rgba(0, 0, 0, 0.7);
+  color: lightgrey;
 }
 #header i {
-    color: cadetblue;
+  color: cadetblue;
 }
 
 #content {
-
   background: url('assets/bg.jpg');
   background-size: cover;
-      left: 0;
-      top: 5em;
-      bottom: 0;
-      right: 0;
-      position: absolute;
+  left: 0;
+  top: 5em;
+  bottom: 0;
+  right: 0;
+  position: absolute;
 }
+
+/*pallette*/
 
 #pallet {
   position: absolute;
-  top: 30%;
+  top: 20%;
   min-width: 70px;
   padding: 1em 1em;
-  background: cadetblue;
+  background: rgba(0,0,0,0.1);
+  border: 3px solid rgba(0,0,0,0.3);
   left:-5px;
   transition:All 0.1s ease-out;
   -webkit-transition:All 0.1s ease-out;
@@ -57,16 +62,30 @@ text-transform: uppercase;
   display: block;
   border: none;
   background: rgba(0,0,0,0.2);
-  width: 70px;
+  width: 100%;
   margin-bottom: 0.5em;
   font-weight: bold;
   cursor: pointer;
-
+  color: lightgrey;
+  text-transform: uppercase;
+  padding: 3px 9px;
 }
+
 #pallet button:hover {
 background: rgba(0,0,0,0.3);
 }
 
+#pallet div {
+  background: rgba(0,0,0,0.2);
+  padding: 1px 3px;
+  font-weight: bold;
+  font-family: arial;
+  font-size: 0.8em;
+  text-align: center;
+  margin-bottom: 0.5em;
+  color: lightgrey;
+  text-transform: uppercase;
+}
 
 #canvas-frame {
   margin: 1em auto;
@@ -83,6 +102,7 @@ background: rgba(0,0,0,0.3);
   box-shadow:         0px 3px 15px 6px rgba(0, 0, 0, 0.75);
 }
 
+/*main canvas*/
 
 #canvas {
 	background: white;
@@ -94,50 +114,86 @@ background: rgba(0,0,0,0.3);
   box-shadow:         inset 0px 3px 15px 2px rgba(0, 0, 0, 0.5);
 }
 
+#canvas img {
+  object-fit: cover;
+  object-position: center;
+  width: 400px;
+  height: 282px;
+}
 
-
+/*carousel images*/
 
 #carousel {
-  border: 1px solid black;
   display: block;
-      position: absolute;
-      bottom: 1em;
-      left: 0;
-      right: 0;
+  position: absolute;
+  bottom: 1em;
+  left: 0;
+  right: 0;
 }
+
+#carousel ul {
+  overflow-x: scroll;
+  white-space: nowrap;
+  padding-bottom: 1em;
+  padding-left: 0;
+}
+
 #carousel ul li {
-      display: inline-block;
-      width: 140px;
-      height: 100px;
-      background: white;
-      margin: 1em;
-      color: #aaa;
-      text-align: center;
-      position: relative;
-      z-index: 4;
-      vertical-align: bottom;
+  display: inline-block;
+  width: 140px;
+  height: 100px;
+  background: white;
+  margin: 1em;
+  color: #aaa;
+  text-align: center;
+  position: relative;
+  z-index: 4;
+  vertical-align: bottom;
+  transition:All 0.1s ease-out;
+  -webkit-transition:All 0.1s ease-out;
+  -moz-transition:All 0.1s ease-out;
+  -o-transition:All 0.1s ease-out;
 }
 
 #carousel ul li:before {
-content: "";
-    display: block;
-    width: 160px;
-    height: 30px;
-    position: absolute;
-      bottom: -4px;
-      left: -10px;
-      box-shadow: 0px 22px 22px 0px rgba(0,0,0,0.75);
+  content: "";
+  display: block;
+  width: 160px;
+  height: 30px;
+  position: absolute;
+  bottom: -4px;
+  left: -10px;
+  box-shadow: 0px 22px 22px 0px rgba(0,0,0,0.75);
 }
 
+#carousel li img {
+  object-fit: cover;
+  object-position: center;
+  width: 140px;
+  height: 100px;
+  cursor: pointer;
+}
+#carousel li { border: 2px solid rgba(95, 158, 160, 0); }
+#carousel li:hover { border: 2px solid rgba(95, 158, 160, 1);}
+
+#carousel li .fa-trash {
+  position: absolute;
+  left: 3px;
+  bottom: 3px;
+  color: white;
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+#carousel li .fa-trash:hover {
+  color: red;
+}
+
+/*add new image*/
+
 #carousel #add-new-btn {
-  border: none;
-  background: none;
-  top: 10px;
   position: relative;
-  width: 80px;
-  height: 80px;
   padding-top: 0px;
-  font-size: 2em;
   color: inherit;
   cursor: pointer;
   transition:All 0.1s ease-out;
@@ -147,7 +203,61 @@ content: "";
   outline: none;
 }
 
-#carousel #add-new-btn:hover {
+#carousel #add-new-btn .fa {
+  padding-top: 1em;
+  font-size: 2em;
+  color: lightgrey;
+  transition:All 0.1s ease-out;
+  -webkit-transition:All 0.1s ease-out;
+  -moz-transition:All 0.1s ease-out;
+  -o-transition:All 0.1s ease-out;
+
+}
+
+#carousel #add-new-btn:hover .fa {
   color: cadetblue;
+  padding-top: 0.9em;
   font-size: 2.1em;
+}
+
+#carousel #add-new-btn input {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  overflow: hidden;
+  width: 140px;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/*scrollbar*/
+
+#carousel > ul::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: rgba(200,200,200,0.2);
+}
+
+#carousel > ul::-webkit-scrollbar
+{
+	height: 6px;
+	background-color: rgba(200,200,200,0.2);
+}
+
+#carousel > ul::-webkit-scrollbar-thumb
+{
+	background-color: cadetblue;
+	background-image: -webkit-linear-gradient(0deg,
+	                                          rgba(255, 255, 255, .2) 25%,
+											  transparent 25%,
+											  transparent 50%,
+											  rgba(255, 255, 255, .2) 50%,
+											  rgba(255, 255, 255, .2) 75%,
+											  transparent 75%,
+											  transparent)
+}
+#carousel > ul::-webkit-scrollbar {
+    cursor:pointer;
 }

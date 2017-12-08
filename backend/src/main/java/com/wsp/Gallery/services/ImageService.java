@@ -13,8 +13,10 @@ public interface ImageService {
     void removeImageById(long id);
 
     Optional<Image> findById(long id);
+    Optional<Image> findByIdAltered(long id, String kind);
+    Optional<Image> findByIdAltered(long id, String kind, Integer value);
 
     Iterable<Image> findAll();
 
-    Image addImage(byte[] image);
+    Image addImage(byte[] bytes, String type);
 }

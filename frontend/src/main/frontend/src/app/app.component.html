@@ -10,30 +10,44 @@
 content
 
   <div id="canvas-frame">
-    <div id="canvas"></div>
+    <div id="canvas">
+      <img *ngIf="chosenImage" [src]="domSanitizer.bypassSecurityTrustUrl(getPath(chosenImage))" />
+    </div>
 
   </div>
 
   <div id="pallet">
-    <button>normal</button>
-    <button>grey</button>
-    <button>sepia</button>
+    <button (click)="getImage(chosenImage.id, '')">normal</button>
+    <button (click)="getImage(chosenImage.id, 'grey')">grey</button>
+    <button (click)="getImage(chosenImage.id, 'sepia')">sepia</button>
+    <div id="bright-lvl">
+      <p>Brightness level: {{brightness}}</p>
+      <input id="brightness" type="range" min="-150" max="150" value="0" #bl (change)="changeBrightness(chosenImage.id, bl.value)" />
+    </div>
+    <div id="contrast-lvl">
+      <p>Contrast level: {{contrast}}</p>
+      <input id="contrast" type="range" min="-150" max="150" value="0" #cl (change)="changeContrast(chosenImage.id, cl.value)" />
+    </div>
+
+
+
   </div>
 
 
   <div id="carousel">
     <ul>
-      <li>
-        img1
+      <li *ngFor="let image of images" (click)="chooseImage(image)">
+        <!--<div class="img" style="background-image:url('data:{{image.type}};base64,{{image.bytes}}');" data-id="{{image.id}}"></div>-->
+        <!--<div class="img" [ngStyle]="domSanitizer.bypassSecurityTrustUrl(getPathBg(image))" data-id="{{image.id}}"></div>-->
+        <img [src]="domSanitizer.bypassSecurityTrustUrl(getPath(image))" />
+        <i class="fa fa-trash" aria-hidden="true" (click)="remove(image)"> </i>
       </li>
-      <li>
-         img2
-      </li>
-      <li>
-        <button id="add-new-btn">
+
+      <li id="add-new-btn">
+
           <i class="fa fa-plus-square" aria-hidden="true"> </i>
           <input type="file" accept="image/*" (change)="onChange($event)"/>
-        </button>
+
 
       </li>
     </ul>

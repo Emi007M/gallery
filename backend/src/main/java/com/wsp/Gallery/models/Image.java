@@ -1,9 +1,5 @@
 package com.wsp.Gallery.models;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import lombok.Data;
 
@@ -17,10 +13,17 @@ public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     long id;
+
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
+    @Column(length=16777216) //long blob
     byte[] bytes;
 
-    public Image(byte[] bytes){
+    String type;
+
+    public Image(byte[] bytes, String type){
         this.bytes = bytes;
+        this.type = type;
     }
 
     public Image(){
@@ -41,5 +44,13 @@ public class Image {
 
     public void setBytes(byte[] bytes) {
         this.bytes = bytes;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

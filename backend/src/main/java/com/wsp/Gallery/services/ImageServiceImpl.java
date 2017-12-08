@@ -28,22 +28,15 @@ public class ImageServiceImpl implements ImageService {
         this.imageRepository = imageRepository;
     }
 
-
     @Override
     public void removeImageById(long id) {
-//        imageRepository.delete(id);
         imageRepository.deleteById(id);
     }
 
-    //    @Override
-//    public Image findById(long id) {
-//        return imageRepository.findOne(id);
-//    }
     @Override
     public Optional<Image> findById(long id) {
         return imageRepository.findById(id);
     }
-
 
     @Override
     public Optional<Image> findByIdAltered(long id, String kind) {
@@ -64,7 +57,6 @@ public class ImageServiceImpl implements ImageService {
         } else if (kind.equals("contrast")) {
             makeContrast(bi, value);
         }
-
 
         img.setBytes(createBytesFromImage(bi));
         img.setType("image/jpeg");
